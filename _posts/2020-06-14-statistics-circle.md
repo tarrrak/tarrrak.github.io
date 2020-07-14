@@ -27,37 +27,43 @@ First, we take into consideration analogous of arithmetic mean. Let’s compute 
 $$ \bar{x}_{\circ} = arg\left(\sum_{i=1}^N  e^{i x_i}\right). $$
 
 {: .box-note}
-**Note:** Here we use complex numbers, but one can write these formula with bunch of sine and cosine functions. The circular mean converges to arithmetic one when points are well localized, i.e. they occupy only a small part of circumference. So-called circular variance can help us to decide whether the points are well localized or not. It is given by the following formula
+**Note:** Here we use complex numbers, but one can write these formula with a bunch of sine and cosine functions. The circular mean converges to arithmetic one when points are well localized, i.e. they occupy only a small part of circumference. 
+
+So-called circular variance can help us to decide whether the points are well localized or not. It is given by the following formula
 
 $$ var_{\circ} = 1 - \frac{1}{N} \left|\sum_{i=1}^N  e^{i x_i}\right|.$$
 
-If all of the points are grouped together, \( var_{\circ}  = 0 \) , which means that the 2D center of mass lies close to the circumference. It is harder to interpret the result when \( var_{\circ}  \approx 1 \). Uniformly distributed points or uniformly distributed groups of points can generate such a result. For example, let’s consider two groups at oposite sides of the circle or points distributed regularly.
+If all of the points are grouped together, \\( var_{\circ}  = 0 \\) , which means that the 2D center of mass lies close to the circumference. It is harder to interpret the result when \\( var_{\circ}  \approx 1 \\). Uniformly distributed points or uniformly distributed groups of points can generate such a result. For example, let’s consider two groups at oposite sides of the circle or points distributed regularly.
 
 ## Uniform sampling
-The simplest probability distribution is a uniform one. We will see some characteristic features and counterintuitive behavior. Firstly, we can see what happens when we try to recover central limit theorem. Because of periodic boundary conditions it is not possible to get a gaussian from adding (jakoś inaczej?, składać) uniform distribution. We will only get uniform one.
+The simplest probability distribution is a uniform one. We will see some characteristic features and counterintuitive behavior. Firstly, we can see what happens when we try to recover central limit theorem. Because of periodic boundary conditions it is not possible to get a gaussian from compounding uniform distributions. We will only get uniform one.
 Secondly, let’s consider position of 2D center of mass of sets of points. We perform a small numerical experiment. We sample many times sets of n points and calculate centers of masses. Here we see results for different number of points in a set. 
 
-In the limit of \( n \rightarrow \infty \) we expect to get Rayleigh distribution. Computing position of the center of mass is just adding unit vectors and dividing the length by the number of vectors. Hence, it is an example of a random walk. Rayleigh distribution occurs when we look at distances for a 2 dimensional random walker.
+In the limit of \\( n \rightarrow \infty \\) we expect to get Rayleigh distribution. Computing position of the center of mass is just adding unit vectors and dividing the length by the number of vectors. Hence, it is an example of a random walk. Rayleigh distribution is related to distances for a 2 dimensional random walker.
 
-Thirdly, there is another intrinsic difference between 1D and periodic boundaries. We want to ask about probability distribution when we take into account relative distance between particles. 
-Multidimensional probability:
-wzór
-Let's consider marginal distribution of a multidimensional probability
-wzór
-We obtained a function of one variable. In physics we call it one particle density function. We need to modify the marginal distribution, when we know that points gather eagerly and we do not know where exactly. The simplest example:
+Thirdly, there is another intrinsic difference between open 1D and periodic boundaries. We want to ask about probability distribution when we take into account relative distance between particles. Let's consider marginal distribution of a multidimensional probability
+
+$$  \rho(x_N) = \int_0^{2 \pi} … \int_0^{2 \pi} dx_1 … dx_{N-1} \rho(x_1,…,x_N).  $$
+
+We obtained a function of one variable. We need to modify the marginal distribution, when we know that points gather eagerly and we do not know where exactly. The simplest example:
 delta(x1-x2)
 wzór
-It means that first particle we can find everywhere, but it with respect to the second one it can choose only zero distance. Hence, we need to modify marginal distribution and 
+It means that first particle we can find everywhere, but with respect to the second one it can choose only zero distance. Hence, we need to modify marginal distribution and 
 Badly modified marginal distribution:
-wzór
+
+$$  \rho_{bad}(x_N) = \int_0^{2 \pi} … \int_0^{2 \pi} dx_1 … dx_{N-1} \rho(x_1,…,x_N - f(x_1,…,x_N)).  $$
+
 Why is it bad? Come back to the aforementioned example of uniformly distributed points. Figures below shows the results for different number of points.
 Figs
-We expect uniform distribution while here we get bell-like curve, which is well localized – even for \( n=100 \).  Why is it so? 
+We expect uniform distribution while here we get bell-like curve, which is well localized – even for \\( n=100 \\).  Why is it so? 
 To obey counter intuitive behavior it is just enough not to take into account one particle., so the equation holds
-wzór – modified marginal distribution
+
+$$  \rho_{modified}(x_N) = \int_0^{2 \pi} … \int_0^{2 \pi} dx_1 … dx_{N-1} \rho(x_1,…,x_N - f(x_1,…,x_{N-1})).  $$
+
 
 ## But why is it useful?
-In physics, interacting particles can form so-called soliton. It is an effect of attractive interactions between particles and they are likely to group in one place. So, when we take into account modified marginal distribution ( _phys._ modified one particle density function), we can observe such shape
+In physics, interacting particles can form so-called soliton. It is an effect of attractive interactions between particles and they are likely to group in one place. So, when we take into account modified marginal distribution (_phys._ modified one particle density function), we can observe such shape
+Fig
 Without proper shift, we observe uniform distribution or aforementioned artificial peak.
 
 ## TLDR; Sum up
